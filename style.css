@@ -1,0 +1,165 @@
+/* Light theme variables */
+:root {
+  --bg: #f9fafb;
+  --bg-alt: #ffffff;
+  --border: #d0d7de;
+  --text: #1f2328;
+  --muted: #4f575e;
+  --accent: #2563eb;
+  --radius: 10px;
+  --shadow: 0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.08);
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+.site-header, .site-footer {
+  text-align: center;
+  padding: 1.25rem 1rem;
+}
+.site-header { background: var(--bg-alt); border-bottom: 1px solid var(--border); }
+.site-footer { background: var(--bg-alt); border-top: 1px solid var(--border); }
+
+h1 { margin: 0 0 .25rem; font-size: clamp(1.6rem, 3vw, 2.2rem); }
+.tagline { margin: 0; color: var(--muted); font-size: .95rem; }
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.5rem 1.5rem 3rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: auto auto; /* two rows */
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.panel {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem 1.35rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  min-height: 420px; /* more space for network visuals */
+  position: relative;
+  overflow: hidden;
+}
+.panel h2 {
+  margin: 0 0 .6rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: .5px;
+}
+
+.canvas-holder {
+  flex: 1;
+  border: 2px dashed var(--border);
+  border-radius: calc(var(--radius) - 2px);
+  background: repeating-linear-gradient(135deg, #f5f7f9 0 10px, #f0f3f6 10px 20px);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: .85rem;
+  text-align: center;
+  padding: .75rem;
+  user-select: none;
+}
+.canvas-holder::before {
+  content: attr(data-placeholder);
+  opacity: .8;
+}
+
+/* SVG network rendering overrides the dashed placeholder */
+.canvas-holder svg { width: 100%; height: 100%; display: block; }
+.canvas-holder.rendered { border-style: solid; background: #fff; }
+
+/* Node styling */
+.nn-node { stroke: var(--accent); stroke-width: 2; fill: #ffffff; }
+.nn-node-label { font-size: 12px; fill: var(--text); text-anchor: middle; dominant-baseline: middle; }
+
+/* Bias node distinct light fill */
+.nn-node.bias { fill: #eef4ff; stroke: #3b82f6; }
+
+/* Edge styling */
+.nn-edge { stroke: #6b7280; stroke-width: 2; stroke-linecap: round; }
+.nn-weight-label { font-size: 11px; fill: var(--muted); dominant-baseline: middle; }
+/* Improve readability of weight labels with subtle outline */
+.nn-weight-label { stroke: #ffffff; stroke-width: 4; paint-order: stroke fill; }
+
+/* Output node accent */
+.nn-node.output { stroke: #9333ea; }
+/* Logistic regression (sigmoid) output styling */
+.nn-node.output.logistic { stroke: #d97706; fill: #fff9db; }
+/* ReLU hidden node styling */
+.nn-node.relu { stroke: #dc2626; fill: #ffe5e5; }
+
+/* Panel controls */
+.panel-controls {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin: .35rem 0 .8rem;
+  font-size: .85rem;
+  flex-wrap: wrap;
+}
+.panel-controls label { font-weight: 500; }
+.panel-controls input[type=number] {
+  width: 88px;
+  padding: .35rem .5rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #fff;
+  font-size: .85rem;
+}
+.panel-controls input[type=number]:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.result-badge {
+  background: #eef4ff;
+  border: 1px solid #d0e3ff;
+  color: #1f3a66;
+  padding: .35rem .6rem;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: .5px;
+}
+
+/* Randomize button */
+.panel-actions { margin: .4rem 0 .9rem; }
+.panel-actions button {
+  background: linear-gradient(90deg,#ffffff,#f3f8ff);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: .5rem .85rem;
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .5px;
+  cursor: pointer;
+  color: var(--text);
+  box-shadow: 0 1px 2px rgba(0,0,0,.06);
+  transition: background .25s, transform .15s;
+}
+.panel-actions button:hover { background: #eef4ff; }
+.panel-actions button:active { transform: translateY(1px); }
+.panel-actions #lr-reveal-btn { border-color: #9333ea; }
+.panel-actions #lr-reveal-btn:hover { background: #f6f0ff; }
+
+@media (prefers-color-scheme: light) {
+  body { background: var(--bg); }
+}
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+  .panel { min-height: 340px; }
+}

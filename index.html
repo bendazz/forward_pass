@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forward Pass through Neural Network</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>Forward Pass through Neural Network</h1>
+  </header>
+
+  <main class="grid">
+    <section class="panel" id="network-panel-1" aria-labelledby="panel1-title">
+      <h2 id="panel1-title">Network A</h2>
+      <div class="panel-actions">
+        <button id="lr-random-btn" type="button">Randomize x₁ & weights</button>
+        <button id="lr-reveal-btn" type="button">Reveal ŷ</button>
+      </div>
+      <div class="canvas-holder" data-placeholder="Network A will render here"></div>
+    </section>
+
+    <section class="panel" id="network-panel-2" aria-labelledby="panel2-title">
+      <h2 id="panel2-title">Network B</h2>
+      <div class="panel-actions">
+        <button id="mr-random-btn" type="button">Randomize x₁, x₂ & weights</button>
+        <button id="mr-reveal-btn" type="button">Reveal ŷ</button>
+      </div>
+      <div class="canvas-holder" data-placeholder="Network B will render here"></div>
+    </section>
+
+    <section class="panel" id="network-panel-3" aria-labelledby="panel3-title">
+      <h2 id="panel3-title">Network C</h2>
+      <div class="panel-actions">
+        <button id="lg-random-btn" type="button">Randomize x₁ & weights</button>
+        <button id="lg-reveal-btn" type="button">Reveal ŷ</button>
+      </div>
+      <div class="canvas-holder" data-placeholder="Network C will render here"></div>
+    </section>
+
+    <section class="panel" id="network-panel-4" aria-labelledby="panel4-title">
+      <h2 id="panel4-title">Network D</h2>
+      <div class="panel-actions">
+        <button id="dn-random-btn" type="button">Randomize x₁ & weights</button>
+        <button id="dn-reveal-btn" type="button">Reveal ŷ</button>
+      </div>
+      <div class="canvas-holder" data-placeholder="Network D will render here"></div>
+    </section>
+  </main>
+
+  <section class="activation-legend" aria-labelledby="legend-title">
+    <h2 id="legend-title">Activation Legend</h2>
+    <ul>
+      <li>
+        <span aria-hidden="true" style="display:inline-block;width:18px;height:18px;border:2px solid #bfa500;background:#fff9cc;border-radius:50%;vertical-align:middle;margin-right:6px;"></span>
+        <strong>Yellow: Sigmoid</strong> σ(z) = 1 / (1 + e<sup>−z</sup>) compresses any real input into (0, 1). Large positive z push σ(z) toward 1; large negatives toward 0. Useful for modeling probabilities.
+      </li>
+      <li>
+        <span aria-hidden="true" style="display:inline-block;width:18px;height:18px;border:2px solid #cc4444;background:#ffe5e5;border-radius:50%;vertical-align:middle;margin-right:6px;"></span>
+        <strong>Red: ReLU</strong> ReLU(z) = max(0, z) outputs zero for negatives and keeps positives unchanged. Adds non-linearity while preserving gradients for positive activations.
+      </li>
+    </ul>
+  </section>
+
+  <footer class="site-footer">
+    <small>Forward Pass Playground</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
